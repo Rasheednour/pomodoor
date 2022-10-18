@@ -1,5 +1,4 @@
 import HomePage from './Pages/HomePage';
-import TasksPage from './Pages/TasksPage';
 import WorkPage from './Pages/WorkPage';
 import './App.css';
 import React from 'react';
@@ -13,7 +12,6 @@ function App() {
         <header className="App-header">
           <Routes>
           <Route path="/" element={<HomePage/>} />
-          <Route path="/tasks" element={<TasksPage/>} />
           <Route path="/work" element={<WorkPage/>} />
           </Routes>
         </header>

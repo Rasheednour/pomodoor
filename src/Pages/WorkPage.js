@@ -1,9 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {useLocation} from 'react-router-dom';
+import { useState } from 'react';
+import CountdownTimer from './CountdownTimer';
 
 function WorkPage() {
+
+  const [name, setName] = useState(''); 
   const location = useLocation();
+
+  const THREE_DAYS_IN_MS = 0 *25 * 60 * 1000;
+  const NOW_IN_MS = new Date().getTime();
+
+  const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
+
   return (
     <>
 
@@ -12,9 +22,15 @@ function WorkPage() {
         </div>
 
         <div className='work-timer'>
-            <h1>25:00</h1>
+
+            <div className='timer'>
+            <CountdownTimer targetDate={dateTimeAfterThreeDays} />
+              </div>
+
             <div className='work-start-pause'>
-            <h1>start timer pause timer</h1>
+            <button className='home-create-button' onClick={e => {
+                setName(e.target.value);
+                }}>START</button>
             </div>
         </div>
 
@@ -27,14 +43,11 @@ function WorkPage() {
         <div className='work-add-task'>
           <h1>add task</h1>
         </div>
-
-        <div className='work-pending-tasks'>
-          <h1>pending tasks</h1>
-        </div>
         
 
         <div>
-          <Link to="/"> finish session </Link>
+          <button className='home-create-button'>
+          <Link to="/"> finish session </Link></button>
         </div>
 
     </>
