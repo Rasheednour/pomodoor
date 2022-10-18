@@ -11,7 +11,6 @@ function App() {
     <div className="App">
       <Router>
         <header className="App-header">
-        <h1>hello</h1>
           <Routes>
           <Route path="/" element={<HomePage/>} />
           <Route path="/tasks" element={<TasksPage/>} />
