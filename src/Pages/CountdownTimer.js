@@ -1,12 +1,14 @@
 import React from 'react';
 import { useCountdown } from './useCountdown';
 import DateTimeDisplay from './DateTimeDisplay';
+import '../App.css';
+
 
 const ExpiredNotice = () => {
     return (
       <div className="expired-notice">
-        <span>Expired!!!</span>
-        <p>Please select a future date and time.</p>
+        <h1 className='timer-text'>25:00</h1>
+        <p>Click "start" to begin work session</p>
       </div>
     );
   };
