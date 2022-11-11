@@ -6,7 +6,6 @@ import { useState } from 'react';
 function HomePage() {
 
   const [name, setName] = useState('');  
-
   const navigate = useNavigate();
   const navigateToSession = () => {
     navigate('/work', {state: {name: name}});

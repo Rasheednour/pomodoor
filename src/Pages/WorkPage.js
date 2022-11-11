@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {useLocation} from 'react-router-dom';
 import { useState } from 'react';
-import CountdownTimer from './CountdownTimer';
+import Timer from './components/timer';
 import '../App.css';
 
 
@@ -14,10 +14,6 @@ function WorkPage() {
   const [serviceList, setServiceList] = useState([{service: ""}]);
   const location = useLocation();
 
-  let THREE_DAYS_IN_MS = 0 *25 * 60 * 1000;
-  const NOW_IN_MS = new Date().getTime();
-
-  const dateTimeAfterThreeDays = NOW_IN_MS + count_down;
 
   const handleServiceChange = (e, index) => {
     const { name, value } = e.target;
@@ -39,32 +35,37 @@ function WorkPage() {
   return (
     <>
 
+
+
         <div className='work-title'>
         <h1>{location.state.name}</h1>
         </div>
 
+
+
+
         <div className='work-block'>
 
-        <div className='work-timer'>
 
-            <div className='timer'>
-            <CountdownTimer targetDate={dateTimeAfterThreeDays} />
+
+            <div className='work-timer'>
+
+              <div className='timer'>
+                
+                <Timer />
+
               </div>
 
-            <div className='work-start-pause'>
-            <button className='session-start-button' onClick={e => {
-                startCountDown(1500000);
-                
-                }}>START</button>
-            </div>
+
         </div>
+
+
 
 
 
 
 
         <div className='work-add-task'>
-        
         <form className="App" autoComplete="off">
         <div className="form-field">
         <label className='work-subtitle' htmlFor="service">Add Tasks</label>
@@ -104,6 +105,11 @@ function WorkPage() {
           </div>
         ))}
       </div>
+
+
+
+
+      
       <div className="output">
         <h2 className='work-subtitle'>Pending Tasks</h2>
         {serviceList &&
@@ -125,6 +131,13 @@ function WorkPage() {
           <Link to="/"> finish session </Link></button>
         </div>
         </div>
+
+
+
+
+
+
+
     </>
   );
 }
