@@ -5,8 +5,8 @@ import { useState } from 'react';
 import Timer from './components/timer';
 import Task from './components/task';
 import '../App.css';
-const axios = require('axios').default;
 
+const axios = require('axios').default;
 const start_task_endpoint = 'https://pomodoro-microservice-361.herokuapp.com/tasks'
 const stop_task_endpoint = 'https://pomodoro-microservice-361.herokuapp.com/task/'
 
@@ -27,27 +27,15 @@ function WorkPage() {
 
 
   function startTask(id) {
-
-    const requestOptions = {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      mode: 'no-cors',
-      body: JSON.stringify({"id": id, "action": "start"})
-    };
-    console.log(requestOptions);
-    fetch(start_task_endpoint, requestOptions)
-    .then((data)=> console.log(data.data))
-    .catch((err)=>console.error(err));
-
-    // axios.post(start_task_endpoint, {
-    //   "id": id,
-    //   "action": "start"
-    // })
-    // .then((response) => {
-    //   console.log(response.data);
-    // }, (error) => {
-    //   console.log(error);
-    // });
+    axios.post(start_task_endpoint, {
+      "id": id,
+      "action": "start"
+    })
+    .then((response) => {
+      console.log(response.data);
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   function stopTask(id) {
