@@ -3,7 +3,6 @@
 }
 
 .App-header {
-
   background-color: #ffdecc;
   border-left: 180px solid #f6e2d9;
   border-right: 180px solid #f6e2d9;
@@ -15,6 +14,7 @@
   font-size: calc(10px + 2vmin);
   color: #cd0404;
   font-family: 'pixelFont';
+  height: 1200px;
 }
 
 .title{
@@ -103,26 +103,51 @@
   margin-left: 65vh;
 }
 
-/*********************************/
+/*************WORK PAGE**********/
 
-.work-title {
+/**********BLUE***********/
+
+.work-page-container {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  /* border: 3px solid blue; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  height: auto;
+}
+
+/**********RED***********/
+
+.session-title-container {
+  /* border: 2px solid red; */
   font-size: calc(10px + 2vmin);
   color: #cd0404;
-  min-height: 100vh;
-  position: relative;
+  max-height: 200vh;
+  top: 20px;
 }
 
-.work-timer {
-  border: 3px solid black;
+
+/**********GREEN***********/
+
+.session-timer-container {
+  width: 500px;
+  /* border: 3px solid green; */
   border-radius: 5px;
   min-height: 30vh;
-  height: 10vh;
-  
+  top: 80px;
+  margin-bottom: 50px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255, 0.4);
 }
 
-.timer {
-  border-style: none;
-  font-size: calc(10px + 2vmin);
+
+.time {
+  font-size: 130px;
 }
 
 .session-start-button {
@@ -137,57 +162,278 @@
   
 }
 
-.work-block {
-  margin-top: 20vh;
-position: absolute;
+.current-task-text {
+  margin-bottom: 5px;
+  margin-left: 0px;
 }
 
-.work-subtitle {
-  font-size: 40px;
-  color: #000;
-}
-
-.work-add-task {
-  margin-top: 5vh;
-}
-
-.work-input-box {
-  background-color: #f08383;
-  font-family: "pixelFont";
-  font-size: 3vh;
-  color: grey;
-}
-
-.work-input-button {
-  background-color: #ea4e4e;
-  font-family: "pixelFont";
-  font-size: 3vh;
-}
-
-.timer-text {
-  font-size: 5vh;
-  margin-bottom: 0;
-}
-
-.pending-tasks {
+.current-task-box {
   border: 2px solid black;
-  border-radius: 3px;
+  border-style: dotted;
+  border-radius: 5px;
+  background-color: rgb(188, 186, 186);
+  box-shadow: inset 0 0 0 2px #faf8f8;
+  height: 20px;
 
-  font-size: 3vh;
-  list-style-type: none;
-  background-color: #f08383;
+  padding-top: 0px;
+  padding-bottom: 30px;
+  display: flex;
   justify-content: center;
+
 }
 
+.current-task-box p {
+  margin: 12px  10px;
+  color: rgb(255, 255, 255);
+  font-family: 'dotPixel';
+}
+
+.current-task-list {
+  display: flex;
+  justify-content: center;
+  margin-top: -5px;
+}
+
+.current-task-item {
+  margin-left: -40px;
+  background-color: #900202;
+  box-shadow: inset 0 0 0 2px #e40202;
+  color: white;
+}
+
+.current-task-item:hover {
+  background-color: #900202;
+  box-shadow: inset 0 0 0 2px rgb(251, 210, 132);
+}
+
+.finish-task-button {
+  background-color: #006931;
+  box-shadow: inset 0 0 0 2px #00a44d;
+  height: 50px;
+  width: 60px;
+  font-family: 'pixelFont';
+  font-size: 15px;
+  color: white;
+}
+
+.finish-task-button:hover {
+  background-color: #00a34c;
+  box-shadow: inset 0 0 0 2px #01e26a;
+  cursor: pointer;
+}
+.finish-task-button:active {
+  background-color: #006931;
+  box-shadow: inset 0 0 0 2px #00a44d;
+  height: 49px;
+  width: 59px;
+  
+}
+
+/**********ORANGE***********/
+
+.pending-tasks-container{
+  /* border: 3px solid ORANGE; */
+  flex: 1;
+  width: 700px;
+}
+
+.pending-tasks-title{
+  margin-right: 30px;
+  margin-bottom: 10px;
+  color: rgb(68, 68, 68);
+  text-align: left;
+  margin-left: 65px;
+  font-size: 30px;
+}
+
+ul {
+  list-style-type: none;
+  justify-content: center;
+
+}
+
+ul li {
+  border: 2px solid black;
+  box-shadow: inset 0 0 0 4px #ffffff;
+  border-radius: 5px;
+  display: flex;
+  width: 500px;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: rgb(255, 255, 255, 0.3);
+  margin-top: 5px;
+  margin-left: 60px;
+  color: rgb(51, 51, 51);
+}
+
+ul li:hover{
+  background-color: rgb(255, 255, 255, 0.8);
+  box-shadow: inset 0 0 0 4px #ffffff;
+}
+
+.pending-tasks-container input {
+  width: 450px;
+  height: 25px;
+  font-family: 'pixelFont';
+  font-size: 30px;
+  border: 2px solid #d1d3d4;
+  padding: 12px;
+  color: #900202;
+  font-weight: 500;
+  border-radius: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.pending-tasks-container input::placeholder {
+  font-family: 'dotPixel';
+  font-size: 25px;
+}
+
+.pending-tasks-container input:focus{
+  outline: none;
+  border-color: #046fcd;
+}
+
+.new-task-container{
+  /* border: 2px solid purple; */
+  box-shadow: inset 0 0 0 4px #ffffff;
+  border-radius: 5px;
+  display: flex;
+  width: 500px;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: rgb(255, 255, 255, 0.5);
+  margin-top: 5px;
+  margin-left: 100px;
+}
+
+
+.task-description {
+  margin-left: 10px;
+}
+
+.start-task-button {
+  background-color: #cd0404;
+  box-shadow: inset 0 0 0 2px #d75d5d;
+  height: 50px;
+  width: 60px;
+  font-family: 'pixelFont';
+  font-size: 15px;
+}
+
+.start-task-button:hover {
+  background-color: #de0303;
+  box-shadow: inset 0 0 0 2px #ff9a9a;
+  cursor: pointer;
+}
+
+.start-task-button:active {
+  background-color: #cd0404;
+  box-shadow: inset 0 0 0 2px #d75d5d;
+  height: 49px;
+  width: 59px;
+}
+
+
+
+
+.add-button {
+  background-color: #046fcd;
+  box-shadow: inset 0 0 0 2px #058aff;
+  height: 50px;
+  width: 60px;
+  font-family: 'pixelFont';
+  font-size: 35px;
+}
+
+.add-button:hover{
+  background-color: #0388fd;
+  box-shadow: inset 0 0 0 2px #6ebbff;
+  cursor: pointer;
+}
+
+.add-button:active{
+  background-color: #046fcd;
+  box-shadow: inset 0 0 0 2px #058aff;
+  height: 49px;
+  width: 59px;
+}
+
+.finished-tasks-title{
+  margin-right: 30px;
+  margin-bottom: 10px;
+  color: rgb(1, 107, 13);
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 110px;
+  font-size: 30px;
+}
+
+.finished-task-item{
+  border: 2px solid black;
+  box-shadow: inset 0 0 0 4px rgb(94, 185, 104);
+  border-radius: 5px;
+  display: flex;
+  width: 500px;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: rgb(1, 107, 13, 0.6);
+  margin-top: 5px;
+  margin-left: 60px;
+  color: rgb(30, 29, 29);
+}
+
+.finished-task-duration{
+  background-color: #024715;
+  box-shadow: inset 0 0 0 2px #038227;
+  height: 50px;
+  width: 60px;
+  font-family: 'pixelFont';
+  font-size: 15px;
+  color: white;
+}
+/**********YELLO***********/
+
+
+.session-finish-container {
+  margin-top: 10px;
+  /* border: 2px solid YELLOW; */
+}
+
+hr {
+  color: white;
+  height: 2px;
+  background-color: white;
+  border-style: none;
+}
 
 /*****************timer*******************/
 
-.time {
-  font-size: 100px;
-}
 
 
-/******************************************/
+/****************tasks*******************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @font-face {

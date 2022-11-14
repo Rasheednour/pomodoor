@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import { useState } from 'react';
 
@@ -17,7 +17,7 @@ function HomePage() {
             <h1 className='home-title'>POMODOOR</h1>
             <h2 className='home-subtitle'>TASK  .  TIME  .  TRACKER</h2>
         </div>
-        <div className='tomato-img'><img src={require('../Pics/tomato.png')}/></div>
+        <div className='tomato-img'><img alt='tomato' src={require('../Pics/tomato.png')}/></div>
         <div className='home-form'>
 
             <form >

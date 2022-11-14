@@ -1,7 +1,7 @@
 import '../../../src/App.css';
 import React, { useState, useEffect, Fragment } from 'react';
 // import { Link } from "react-router-dom";
-const START_MINUTES = '19';
+const START_MINUTES = '25';
 const START_SECOND = '00';
 const START_DERATION = 10;
 
@@ -65,7 +65,6 @@ export default function Timer() {
   return (
     <Fragment>
       <div className="App">
-        <h3>Result:</h3>
         <div className="time">
           {currentMinutes}
           <span className="mx-3">:</span>
