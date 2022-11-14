@@ -31,7 +31,6 @@ function WorkPage() {
     const requestOptions = {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
-      mode: 'no-cors',
       body: JSON.stringify({"id": id, "action": "start"})
     };
     console.log(requestOptions);
