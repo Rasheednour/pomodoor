@@ -5,17 +5,16 @@ import { useState } from 'react';
 import Timer from './components/timer';
 import Task from './components/task';
 import '../App.css';
-const axios = require('axios').default;
 
-const start_task_endpoint = 'https://pomodoro-microservice-361.herokuapp.com/tasks'
-const stop_task_endpoint = 'https://pomodoro-microservice-361.herokuapp.com/task/'
+const start_task_endpoint = 'https://pomodoro-microservice-2.herokuapp.com/tasks'
+const stop_task_endpoint = 'https://pomodoro-microservice-2.herokuapp.com/task/'
 
 
 
 function WorkPage() {
   const [tasks, setTasks] = useState([]);
   const [currentTask, setCurrentTask] = useState(null);
-  const [id, setID] = useState(100);
+  const [id, setID] = useState(1200);
   const location = useLocation();
   const [input, setInput] = useState('');
   const [finishedTasks, setFinishedTasks] = useState([]);
@@ -33,34 +32,22 @@ function WorkPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({"id": id, "action": "start"})
     };
-    console.log(requestOptions);
     fetch(start_task_endpoint, requestOptions)
-    .then((data)=> console.log(data.data))
+    .then(response => response.json())
+    .then(response => {
+      console.log(response)
+    })
     .catch((err)=>console.error(err));
 
-    // axios.post(start_task_endpoint, {
-    //   "id": id,
-    //   "action": "start"
-    // })
-    // .then((response) => {
-    //   console.log(response.data);
-    // }, (error) => {
-    //   console.log(error);
-    // });
   }
 
   function stopTask(id) {
-    const str_id = toString(id);
-    return axios.put(stop_task_endpoint+str_id, {
-      "id": id,
-      "action": "stop"
-    })
-    .then((response) => {
-      const duration = response.data.task.duration;
-      return duration;
-    }, (error) => {
-      console.log(error);
-    });
+    const end_point = stop_task_endpoint + id;
+    const requestOptions = {
+      method: 'get',
+    };
+    return fetch(end_point, requestOptions)
+    .then(response=>response.json());
   }
 
   function incrementID() {
@@ -116,16 +103,45 @@ function WorkPage() {
                   <p className='task-description'>{currentTask.description}</p>
                   <button className='finish-task-button' onClick={e=>{
                     // send PUT request to microservice to stop tracking this task and get duration
-                    stopTask(currentTask.id).then(duration=>{
+                    // stopTask(currentTask.id).then(duration=>{
 
+                    //   // add task to list of finished tasks
+                    //   addFinishedTask(currentTask.id, currentTask.description, duration);
+
+                    //   // reset current task to null
+                    //   setCurrentTask(null);
+
+                    // });
+
+                    // send PUT request to microservice to stop tracking this task and get duration
+                    
+                    // (async() => {
+                    //   const response = await stopTask(currentTask.id);
+                    //   console.log("response is ", response.data);
+                    //   const duration = response.data.task.duration;
+                    //   // add task to list of finished tasks
+                    //   addFinishedTask(currentTask.id, currentTask.description, duration);
+                    //   // reset current task to null
+                    //   setCurrentTask(null);
+                    // })();
+
+
+                    (async() => {
+                      const response = await stopTask(currentTask.id);
+                      while(true) {
+                        if (response !== undefined) {
+                          break;
+                        }
+                      }
+                      console.log("response is ", response);
+                      const duration = response.total_duration;
                       // add task to list of finished tasks
                       addFinishedTask(currentTask.id, currentTask.description, duration);
-
                       // reset current task to null
                       setCurrentTask(null);
+                    })();
 
-                    });
-                         
+
                   }}>
                         FINISH
                   </button>
@@ -189,7 +205,7 @@ function WorkPage() {
               <li key={task.id} className='finished-task-item'>
                   <Task name={task.description}/>
                   <button className='finished-task-duration'>
-                    {task.duration} min.
+                    {task.duration} sec.
                   </button>
               </li>
             ))}
