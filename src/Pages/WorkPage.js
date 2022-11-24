@@ -6,9 +6,10 @@ import Timer from './components/timer';
 import Task from './components/task';
 import '../App.css';
 
-const start_task_endpoint = 'https://pomodoro-microservice-2.herokuapp.com/tasks'
-const stop_task_endpoint = 'https://pomodoro-microservice-2.herokuapp.com/task/'
+const start_task_endpoint = 'https://pomodoro-microservice-2.herokuapp.com/tasks';
+const stop_task_endpoint = 'https://pomodoro-microservice-2.herokuapp.com/task/';
 
+let tasksList = {};
 
 
 function WorkPage() {
@@ -24,30 +25,48 @@ function WorkPage() {
     setInput(event.target.value);
   }
 
-
+// start a timer for the current task
   function startTask(id) {
 
-    const requestOptions = {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({"id": id, "action": "start"})
-    };
-    fetch(start_task_endpoint, requestOptions)
-    .then(response => response.json())
-    .then(response => {
-      console.log(response)
-    })
-    .catch((err)=>console.error(err));
+    // local subsitute to timing a task
+
+    // get current time in seconds
+    const currentTime = new Date().getTime() / 1000;
+    // save current time for this task in the tasksList
+    tasksList[id] = currentTime;
+
+
+    // API microservice
+
+    // const requestOptions = {
+    //   method: 'post',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({"id": id, "action": "start"})
+    // };
+    // fetch(start_task_endpoint, requestOptions)
+    // .then(response => response.json())
+    // .then(response => {
+    //   console.log(response)
+    // })
+    // .catch((err)=>console.error(err));
 
   }
 
   function stopTask(id) {
-    const end_point = stop_task_endpoint + id;
-    const requestOptions = {
-      method: 'get',
-    };
-    return fetch(end_point, requestOptions)
-    .then(response=>response.json());
+
+    // local subsitute for stopping a task and calculating elapsed time
+    const endTime = new Date().getTime() / 1000;
+    const startTime = tasksList[id];
+    const elapsedTime = Math.floor( endTime - startTime );
+    return elapsedTime;
+
+    // // API microservice to stopping a task
+    // const end_point = stop_task_endpoint + id;
+    // const requestOptions = {
+    //   method: 'get',
+    // };
+    // return fetch(end_point, requestOptions)
+    // .then(response=>response.json());
   }
 
   function incrementID() {
@@ -102,44 +121,31 @@ function WorkPage() {
                 <li className='current-task-item'>
                   <p className='task-description'>{currentTask.description}</p>
                   <button className='finish-task-button' onClick={e=>{
-                    // send PUT request to microservice to stop tracking this task and get duration
-                    // stopTask(currentTask.id).then(duration=>{
-
-                    //   // add task to list of finished tasks
-                    //   addFinishedTask(currentTask.id, currentTask.description, duration);
-
-                    //   // reset current task to null
-                    //   setCurrentTask(null);
-
-                    // });
-
-                    // send PUT request to microservice to stop tracking this task and get duration
                     
+
+                    // API implementation
+
                     // (async() => {
                     //   const response = await stopTask(currentTask.id);
-                    //   console.log("response is ", response.data);
-                    //   const duration = response.data.task.duration;
+                    //   while(true) {
+                    //     if (response !== undefined) {
+                    //       break;
+                    //     }
+                    //   }
+                    //   console.log("response is ", response);
+                      
+                    //   const duration = response.total_duration;
                     //   // add task to list of finished tasks
                     //   addFinishedTask(currentTask.id, currentTask.description, duration);
                     //   // reset current task to null
                     //   setCurrentTask(null);
                     // })();
 
-
-                    (async() => {
-                      const response = await stopTask(currentTask.id);
-                      while(true) {
-                        if (response !== undefined) {
-                          break;
-                        }
-                      }
-                      console.log("response is ", response);
-                      const duration = response.total_duration;
-                      // add task to list of finished tasks
-                      addFinishedTask(currentTask.id, currentTask.description, duration);
-                      // reset current task to null
-                      setCurrentTask(null);
-                    })();
+                    // local implementation
+                    const duration = stopTask(currentTask.id);
+                    addFinishedTask(currentTask.id, currentTask.description, duration);
+                    setCurrentTask(null);
+                    
 
 
                   }}>
