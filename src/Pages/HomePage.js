@@ -12,7 +12,7 @@ function HomePage() {
   };
 
   return (
-        <>
+        <div className='home-container'>
         <div className='title'>
             <h1 className='home-title'>POMODOOR</h1>
             <h2 className='home-subtitle'>TASK  .  TIME  .  TRACKER</h2>
@@ -41,7 +41,7 @@ function HomePage() {
         </div>
 
         
-        </>
+        </div>
   );
 }
 

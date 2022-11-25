@@ -3,9 +3,7 @@
 }
 
 .App-header {
-  background-color: #ffdecc;
-  border-left: 180px solid #f6e2d9;
-  border-right: 180px solid #f6e2d9;
+  background-color: #f6e2d9;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,6 +20,13 @@
   margin-bottom: 0;
   position: relative;
 }
+
+.home-container{
+  border: 2px solid black;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 .home-title {
 
   font-size: calc(100px + 2vmin);
@@ -111,12 +116,13 @@
   position: absolute;
   top: 0px;
   bottom: 0px;
-  /* border: 3px solid blue; */
+  /* border: 3px solid #fdbb97; */
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 700px;
   height: auto;
+  background-color: #fdceb5;
 }
 
 /**********RED***********/
@@ -405,9 +411,9 @@ ul li:hover{
 }
 
 hr {
-  color: white;
+  color: #ffdecc;
   height: 2px;
-  background-color: white;
+  background-color: #fee8dc;
   border-style: none;
 }
 

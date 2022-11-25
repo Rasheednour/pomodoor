@@ -116,7 +116,7 @@ function WorkPage() {
         {/* timer */}
 
         <div className='session-timer-container'>
-            <Timer />
+            <Timer START_MINUTES={'25'} START_SECOND={'00'} />
             <h3 className='current-task-text'>CURRENT TASK</h3>
 
             {currentTask === null ? 

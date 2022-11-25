@@ -5,7 +5,7 @@ const START_MINUTES = '25';
 const START_SECOND = '00';
 const START_DERATION = 10;
 
-export default function Timer() {
+export default function Timer({START_MINUTES, START_SECOND}) {
   const [currentMinutes, setMinutes] = useState(START_MINUTES);
   const [currentSeconds, setSeconds] = useState(START_SECOND);
   const [isStop, setIsStop] = useState(false);
