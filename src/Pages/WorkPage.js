@@ -28,6 +28,9 @@ function WorkPage() {
 // start a timer for the current task
   function startTask(id) {
 
+    // start count-down timer when a task is started
+    document.getElementById('start-timer').click();
+
     // local subsitute to timing a task
 
     // get current time in seconds
@@ -54,9 +57,13 @@ function WorkPage() {
 
   function stopTask(id) {
 
+    // stop count-down timer when a task is finished
+    document.getElementById('stop-timer').click();
+
     // local subsitute for stopping a task and calculating elapsed time
     const endTime = new Date().getTime() / 1000;
     const startTime = tasksList[id];
+    // get elapsed time in decimals
     const elapsedTime = Math.floor( endTime - startTime );
     return elapsedTime;
 

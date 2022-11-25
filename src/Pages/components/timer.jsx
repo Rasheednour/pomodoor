@@ -72,6 +72,7 @@ export default function Timer() {
         </div>
         {!isRunning && !isStop && (
           <button
+            id='start-timer'
             onClick={startHandler}
             className='session-start-button'
           >
@@ -80,6 +81,7 @@ export default function Timer() {
         )}
         {isRunning && (
           <button
+            id='stop-timer'
             onClick={stopHandler}
             className='session-start-button'
           >
