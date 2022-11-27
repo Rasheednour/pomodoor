@@ -115,6 +115,7 @@ export default function Timer({WORK_MINUTES, BREAK_MINUTES, RECESS_MINUTES}) {
 
         {isStop && (
           <button
+            id='start-timer'
             onClick={resumeHandler}
             className='session-start-button'
           >
