@@ -1,19 +1,21 @@
 import '../../../src/App.css';
 import React, { useState, useEffect, Fragment } from 'react';
-// import { Link } from "react-router-dom";
-const START_MINUTES = '25';
 const START_SECOND = '00';
 const START_DERATION = 10;
+let pomodoroCount = 0;
 
-export default function Timer({START_MINUTES, START_SECOND}) {
-  const [currentMinutes, setMinutes] = useState(START_MINUTES);
+export default function Timer({WORK_MINUTES, BREAK_MINUTES, RECESS_MINUTES}) {
+  const [currentMinutes, setMinutes] = useState(WORK_MINUTES);
   const [currentSeconds, setSeconds] = useState(START_SECOND);
   const [isStop, setIsStop] = useState(false);
   const [duration, setDuration] = useState(START_DERATION);
   const [isRunning, setIsRunning] = useState(false);
+  const [sessionType, setSessionType] = useState('-work time-');
+
+  let textColor = 'time';
 
   const startHandler = () => {
-    setDuration(parseInt(START_SECOND, 10) + 60 * parseInt(START_MINUTES, 10));
+    setDuration(parseInt(START_SECOND, 10) + 60 * parseInt(currentMinutes, 10));
     // setMinutes(60 * 5);
     // setSeconds(0);
     setIsRunning(true);
@@ -24,12 +26,32 @@ export default function Timer({START_MINUTES, START_SECOND}) {
     setIsRunning(false);
   };
   const resetHandler = () => {
-    setMinutes(START_MINUTES);
+    setMinutes(currentMinutes);
     setSeconds(START_SECOND);
     setIsRunning(false);
     setIsStop(false);
     setDuration(START_DERATION);
   };
+  const switchTimer = () => {
+    if ((currentMinutes === BREAK_MINUTES) || (currentMinutes === RECESS_MINUTES)) {
+      setMinutes(WORK_MINUTES);
+      setSessionType('-work time-');
+
+    } else {
+      pomodoroCount += 1;
+      if ((pomodoroCount % 3 === 0) && (pomodoroCount !== 0)) {
+        setMinutes(RECESS_MINUTES);
+        setSessionType('-recess time-');
+      } else {
+        setMinutes(BREAK_MINUTES);
+        setSessionType('-break time-');
+      }
+    }
+    setSeconds(START_SECOND);
+    setIsRunning(false);
+    setIsStop(false);
+    setDuration(START_DERATION);
+  }
 
   const resumeHandler = () => {
     let newDuration =
@@ -46,7 +68,7 @@ export default function Timer({START_MINUTES, START_SECOND}) {
       var minutes, seconds;
       const interval = setInterval(function () {
         if (--timer <= 0) {
-          resetHandler();
+          switchTimer();
         } else {
           minutes = parseInt(timer / 60, 10);
           seconds = parseInt(timer % 60, 10);
@@ -65,9 +87,11 @@ export default function Timer({START_MINUTES, START_SECOND}) {
   return (
     <Fragment>
       <div className="App">
-        <div className="time">
+        <div className={sessionType}><p>{sessionType}</p></div>
+        <div className={textColor}>
+          
           {currentMinutes}
-          <span className="mx-3">:</span>
+          <span>:</span>
           {currentSeconds}
         </div>
         {!isRunning && !isStop && (
@@ -85,7 +109,7 @@ export default function Timer({START_MINUTES, START_SECOND}) {
             onClick={stopHandler}
             className='session-start-button'
           >
-            STOP
+            PAUSE
           </button>
         )}
 
