@@ -473,16 +473,43 @@ hr {
 
 
 .setup-container {
-  background-color: #006931;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  /* border: 3px solid #fdbb97; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  height: auto;
+  background-color: #fdceb5;
 }
 
+.setup-container form {
+  margin-top: 50px;
+}
 
+.setup-container input {
+  width: 100px;
+  margin-bottom: 20px;
+}
 
+.setup-container label {
+  margin-top: 50px;
+}
 
+.setup-container button {
+  margin-top: 50px;
+}
 
-
-
-
+.setup-input {
+  border: 3px solid black;
+  border-radius: 5px;
+  display: flex;
+  height: 80px;
+  background-color: #ec958a;
+  align-items: center;
+}
 
 
 

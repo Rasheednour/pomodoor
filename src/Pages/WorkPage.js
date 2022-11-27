@@ -103,6 +103,8 @@ function WorkPage() {
     });
   }
 
+  console.log(location.state);
+  const time = {pomoTime: location.state.pomodoroTime, breakTime: location.state.breakTime, recessTime: location.state.recessTime};
   return (
     <div className='work-page-container'>
 
@@ -116,7 +118,7 @@ function WorkPage() {
         {/* timer */}
 
         <div className='session-timer-container'>
-            <Timer WORK_MINUTES={'01'} BREAK_MINUTES={'02'} RECESS_MINUTES={'03'}/>
+            <Timer WORK_TIME={time.pomoTime} BREAK_TIME={time.breakTime} RECESS_TIME={time.recessTime}/>
             <h3 className='current-task-text'>CURRENT TASK</h3>
 
             {currentTask === null ? 

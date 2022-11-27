@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 function HomePage() {
 
-  const [name, setName] = useState('');  
+  const [name, setName] = useState('session');  
   const navigate = useNavigate();
   const navigateToSession = () => {
     navigate('/setup', {state: {name: name}});
@@ -30,7 +30,6 @@ function HomePage() {
                 </fieldset>
 
                 <button className='home-create-button' onClick={e => {
-                setName(e.target.value);
                 navigateToSession();
                 }}>CREATE</button>
 

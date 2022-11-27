@@ -1,21 +1,21 @@
 import '../../../src/App.css';
 import React, { useState, useEffect, Fragment } from 'react';
-const START_SECOND = '00';
 const START_DERATION = 10;
 let pomodoroCount = 0;
 
-export default function Timer({WORK_MINUTES, BREAK_MINUTES, RECESS_MINUTES}) {
-  const [currentMinutes, setMinutes] = useState(WORK_MINUTES);
-  const [currentSeconds, setSeconds] = useState(START_SECOND);
+export default function Timer({WORK_TIME, BREAK_TIME, RECESS_TIME}) {
+  const [currentMinutes, setMinutes] = useState(WORK_TIME[0]);
+  const [currentSeconds, setSeconds] = useState(WORK_TIME[1]);
   const [isStop, setIsStop] = useState(false);
   const [duration, setDuration] = useState(START_DERATION);
   const [isRunning, setIsRunning] = useState(false);
   const [sessionType, setSessionType] = useState('-work time-');
+  const [isPomodoro, setIsPomodoro] = useState(true)
 
   let textColor = 'time';
 
   const startHandler = () => {
-    setDuration(parseInt(START_SECOND, 10) + 60 * parseInt(currentMinutes, 10));
+    setDuration(parseInt(currentSeconds, 10) + 60 * parseInt(currentMinutes, 10));
     // setMinutes(60 * 5);
     // setSeconds(0);
     setIsRunning(true);
@@ -27,27 +27,31 @@ export default function Timer({WORK_MINUTES, BREAK_MINUTES, RECESS_MINUTES}) {
   };
   const resetHandler = () => {
     setMinutes(currentMinutes);
-    setSeconds(START_SECOND);
+    setSeconds(currentSeconds);
     setIsRunning(false);
     setIsStop(false);
     setDuration(START_DERATION);
   };
   const switchTimer = () => {
-    if ((currentMinutes === BREAK_MINUTES) || (currentMinutes === RECESS_MINUTES)) {
-      setMinutes(WORK_MINUTES);
+    if (!isPomodoro) {
+      setIsPomodoro(true);
+      setMinutes(WORK_TIME[0]);
+      setSeconds(WORK_TIME[1]);
       setSessionType('-work time-');
 
     } else {
       pomodoroCount += 1;
+      setIsPomodoro(false);
       if ((pomodoroCount % 3 === 0) && (pomodoroCount !== 0)) {
-        setMinutes(RECESS_MINUTES);
+        setMinutes(RECESS_TIME[0]);
+        setSeconds(RECESS_TIME[1]);
         setSessionType('-recess time-');
       } else {
-        setMinutes(BREAK_MINUTES);
+        setMinutes(BREAK_TIME[0]);
+        setSeconds(BREAK_TIME[1]);
         setSessionType('-break time-');
       }
     }
-    setSeconds(START_SECOND);
     setIsRunning(false);
     setIsStop(false);
     setDuration(START_DERATION);
