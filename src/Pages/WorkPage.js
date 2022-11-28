@@ -236,7 +236,10 @@ function WorkPage() {
 
 
           {/* finished tasks sesction */}
-          <h3 className='finished-tasks-title'>Finished Tasks</h3>
+          <div className='pending-tasks-ribbon'>
+          <h3 className='pending-tasks-title'>Finished Tasks</h3>
+          </div>
+          
           <ul>
           {finishedTasks.map(task => (
               <li key={task.id} className='finished-task-item'>
