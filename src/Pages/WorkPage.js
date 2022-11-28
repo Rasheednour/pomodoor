@@ -134,7 +134,7 @@ function WorkPage() {
         <div className='session-timer-container'>
             <Timer WORK_TIME={time.pomoTime} BREAK_TIME={time.breakTime} RECESS_TIME={time.recessTime}/>
             <h3 className='current-task-text'>CURRENT TASK</h3>
-
+        
             {currentTask === null ? 
               <div className='current-task-box'> 
               <p>start a task below</p> 

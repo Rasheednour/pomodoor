@@ -123,6 +123,7 @@
   width: 700px;
   height: auto;
   background-color: #fdceb5;
+  overflow: visible;
 }
 
 /**********RED***********/
@@ -140,14 +141,12 @@
 
 .session-timer-container {
   width: 500px;
-  /* border: 3px solid green; */
   border-radius: 5px;
-  min-height: 30vh;
+  min-height: 37vh;
   top: 80px;
   margin-bottom: 50px;
   margin-top: 40px;
-  display: flex;
-  flex-direction: column;
+  display: block;
   background-color: rgba(255, 83, 83, 0.4);
 }
 
@@ -228,10 +227,8 @@
   background-color: rgb(188, 186, 186);
   box-shadow: inset 0 0 0 2px #faf8f8;
   height: 20px;
-
   padding-top: 0px;
   padding-bottom: 30px;
-  display: flex;
   justify-content: center;
 
 }
@@ -289,6 +286,7 @@
   /* border: 3px solid ORANGE; */
   flex: 1;
   width: 700px;
+  background-color: #fdceb5;
 }
 
 .pending-tasks-title{
