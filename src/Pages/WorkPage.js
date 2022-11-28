@@ -103,7 +103,21 @@ function WorkPage() {
     });
   }
 
-  console.log(location.state);
+  function deleteTask(task_id) {
+    console.log("deleting?")
+      // delete task from list of pending tasks
+    let newTaskList = tasks;
+    for (let i=0; i < newTaskList.length; i++) {
+      if (newTaskList[i]["id"] === task_id) {
+        newTaskList.splice(i, 1);
+        break;
+      }
+    }
+    setTasks(newTaskList);
+  }
+
+
+
   const time = {pomoTime: location.state.pomodoroTime, breakTime: location.state.breakTime, recessTime: location.state.recessTime};
   return (
     <div className='work-page-container'>
@@ -202,6 +216,11 @@ function WorkPage() {
                   }}>
                     START
                   </button>
+                  <button className='delete-task-button' onClick={()=>{
+                                setTasks((current) =>
+                                current.filter((item) => item.id !== task.id)
+                              );
+                              }}> - </button>
               </li>
             ))}
           </ul>

@@ -391,7 +391,28 @@ ul li:hover{
   width: 59px;
 }
 
+.delete-task-button {
+  border: 2px solid rgb(233, 181, 151);
+  background-color: rgba(246, 225, 215, 0.5);
+  height: 30px;
+  width: 30px;
+  font-size: 50px;
+  margin-left: 530px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 8px;
+  color: grey;
+}
 
+.delete-task-button:hover {
+  color: black;
+  border: 2px solid black;
+  cursor: pointer;
+  background-color: rgb(197, 21, 21);
+}
 
 
 .add-button {
