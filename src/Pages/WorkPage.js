@@ -133,7 +133,7 @@ function WorkPage() {
 
         <div className='session-timer-container'>
             <Timer WORK_TIME={time.pomoTime} BREAK_TIME={time.breakTime} RECESS_TIME={time.recessTime}/>
-            <h3 className='current-task-text'>CURRENT TASK</h3>
+            
         
             {currentTask === null ? 
               <div className='current-task-box'> 
@@ -195,8 +195,11 @@ function WorkPage() {
         
         <div className='pending-tasks-container'>
           <hr></hr>
-          <ul>
+          <div className='pending-tasks-ribbon'>
             <h3 className='pending-tasks-title'>Pending Tasks</h3>
+          </div>
+          <ul>
+            
             {tasks.map(task => (
               <li key={task.id}>
                   <Task name={task.description}/>

@@ -13,33 +13,28 @@ function HomePage() {
 
   return (
         <div className='home-container'>
-        <div className='title'>
-            <h1 className='home-title'>POMODOOR</h1>
-            <h2 className='home-subtitle'>TASK  .  TIME  .  TRACKER</h2>
-        </div>
-        <div className='tomato-img'><img alt='tomato' src={require('../Pics/tomato.png')}/></div>
-        <div className='home-form'>
+          <div className='title'>
+              <h1 className='home-title'>POMODOOR</h1>
+              <img alt='tomato' src={require('../Pics/tomato.png')}/>
+          </div>
+          <div className='sub-title'>
+              <h2 className='home-subtitle'>TASK  .  TIME  .  TRACKER</h2>
+          </div>
+          <div className='home-form'>
+              <form >
 
-            <form >
+                  <fieldset className='home-fieldset'>
+                      <label className='home-fieldset-label'>CREATE A NEW WORK SESSION
+                      <input className='home-fieldset-input' placeholder="SESSION NAME" type="text"
+                      onChange={e => setName(e.target.value)} />
+                      </label>
+                  </fieldset>
 
-                <fieldset className='home-fieldset'>
-                    <label className='home-fieldset-label'>CREATE A NEW WORK SESSION
-                    <input className='home-fieldset-input' placeholder="SESSION NAME" type="text" value={name}
-                    onChange={e => setName(e.target.value)} />
-                    </label>
-                </fieldset>
-
-                <button className='home-create-button' onClick={e => {
-                navigateToSession();
-                }}>CREATE</button>
-
-            </form>
-            {/*
-            <Link to="/tasks"> CREATE</Link>
-            */}
-        </div>
-
-        
+                  <button className='home-create-button' onClick={e => {
+                  navigateToSession();
+                  }}>CREATE</button>
+              </form>
+          </div>
         </div>
   );
 }

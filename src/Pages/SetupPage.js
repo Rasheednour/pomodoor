@@ -17,12 +17,11 @@ function SetupPage() {
     };
     return (
         <div className='setup-container'>
-
+                <h1>Setup Timers</h1>
                 <form>
                 <fieldset className='home-fieldset'>
 
-                    <label className='home-fieldset-label'>POMODORO TIME
-                        <div className='setup-input'>
+                    <label className='home-fieldset-label'>POMODORO TIME                       <div className='setup-input'>
                             <input className='home-fieldset-input' placeholder="00" type="text" value={pomodoroTime[0]}
                             onChange={e => setPomodoroTime([e.target.value, pomodoroTime[1]])} />
                             <p>:</p>
@@ -31,7 +30,7 @@ function SetupPage() {
                         </div>
                     </label>
 
-                    <label className='home-fieldset-label'>BREAK TIME
+                    <label className='home-fieldset-label'>BREAK TIME 
                         <div className='setup-input'>
                             <input className='home-fieldset-input' placeholder="00" type="text" value={breakTime[0]}
                             onChange={e => setBreakTime([e.target.value, breakTime[1]])} />
@@ -41,7 +40,7 @@ function SetupPage() {
                         </div>
                     </label>
 
-                    <label className='home-fieldset-label'>RECESS TIME
+                    <label className='home-fieldset-label'>RECESS TIME 
                         <div className='setup-input'>
                             <input className='home-fieldset-input' placeholder="00" type="text" value={recessTime[0]}
                             onChange={e => setRecessTime([e.target.value, recessTime[1]])} />

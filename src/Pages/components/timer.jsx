@@ -11,9 +11,10 @@ export default function Timer({WORK_TIME, BREAK_TIME, RECESS_TIME}) {
   const [isRunning, setIsRunning] = useState(false);
   const [sessionType, setSessionType] = useState('-work time-');
   const [isPomodoro, setIsPomodoro] = useState(true)
-
+  const [background, setBackground] = useState('timer-background-red');
+  
   let textColor = 'time';
-
+  
   const startHandler = () => {
     setDuration(parseInt(currentSeconds, 10) + 60 * parseInt(currentMinutes, 10));
     // setMinutes(60 * 5);
@@ -34,6 +35,7 @@ export default function Timer({WORK_TIME, BREAK_TIME, RECESS_TIME}) {
   };
   const switchTimer = () => {
     if (!isPomodoro) {
+      setBackground('timer-background-red');
       setIsPomodoro(true);
       setMinutes(WORK_TIME[0]);
       setSeconds(WORK_TIME[1]);
@@ -43,10 +45,12 @@ export default function Timer({WORK_TIME, BREAK_TIME, RECESS_TIME}) {
       pomodoroCount += 1;
       setIsPomodoro(false);
       if ((pomodoroCount % 3 === 0) && (pomodoroCount !== 0)) {
+        setBackground('timer-background-green')
         setMinutes(RECESS_TIME[0]);
         setSeconds(RECESS_TIME[1]);
         setSessionType('-recess time-');
       } else {
+        setBackground('timer-background-blue')
         setMinutes(BREAK_TIME[0]);
         setSeconds(BREAK_TIME[1]);
         setSessionType('-break time-');
@@ -90,7 +94,7 @@ export default function Timer({WORK_TIME, BREAK_TIME, RECESS_TIME}) {
 
   return (
     <Fragment>
-      <div className="App">
+      <div className={background}>
         <div className={sessionType}><p>{sessionType}</p></div>
         <div className={textColor}>
           
@@ -134,6 +138,7 @@ export default function Timer({WORK_TIME, BREAK_TIME, RECESS_TIME}) {
         >
           RESET
         </button>
+        <h3 className='current-task-text'>CURRENT TASK</h3>
       </div>
     </Fragment>
   );

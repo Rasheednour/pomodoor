@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background-color: #f6e2d9;
+  background-color: #f5dacd;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,15 +16,29 @@
 }
 
 .title{
-  min-height: 40vh;
+  display: flex;
+  flex-direction: row;
+  min-height: 10vh;
   margin-bottom: 0;
   position: relative;
+  left: 15px;
+}
+
+.title img {
+  width: 100px;
+  height: 100px;
+}
+
+.sub-title {
+  background-color: #006931;
+  border: 3px solid black;
+  border-radius: 5px;
+  margin-top: 0px;
+  margin-bottom: 300px;
 }
 
 .home-container{
-  border: 2px solid black;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  background-color: #fdceb5;
 }
 
 .home-title {
@@ -147,7 +161,21 @@
   margin-bottom: 50px;
   margin-top: 40px;
   display: block;
+}
+
+.timer-background-red {
   background-color: rgba(255, 83, 83, 0.4);
+  padding-bottom: 40px;
+}
+
+.timer-background-blue {
+  background-color: rgba(83, 143, 255, 0.4);
+  padding-bottom: 40px;
+}
+
+.timer-background-green {
+  background-color: rgba(7, 205, 56, 0.4);
+  padding-bottom: 40px;
 }
 
 .-work {
@@ -215,7 +243,7 @@
 }
 
 .current-task-text {
-  margin-bottom: 5px;
+  margin-bottom: -30px;
   margin-left: 0px;
   color: black;
 }
@@ -289,12 +317,23 @@
   background-color: #fdceb5;
 }
 
+.pending-tasks-ribbon{
+  border: 3px solid black;
+  background-color: #ef9c7b;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  margin-left: 100px;
+}
+
 .pending-tasks-title{
-  margin-right: 30px;
-  margin-bottom: 10px;
+
   color: rgb(68, 68, 68);
   text-align: left;
-  margin-left: 65px;
   font-size: 30px;
 }
 
@@ -341,6 +380,8 @@ ul li:hover{
 .pending-tasks-container input::placeholder {
   font-family: 'dotPixel';
   font-size: 25px;
+  text-align: center;
+  margin-left: -55px;
 }
 
 .pending-tasks-container input:focus{
