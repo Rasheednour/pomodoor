@@ -197,6 +197,11 @@ function WorkPage() {
           <hr></hr>
           <div className='pending-tasks-ribbon'>
             <h3 className='pending-tasks-title'>Pending Tasks</h3>
+            <button className='clear-tasks-button' title='clear tasks' onClick={()=>{
+                                if (window.confirm('Are you sure you want to clear the list of pending tasks?')){
+                                  setTasks([]);
+                                }
+                              }}> - </button>
           </div>
           <ul>
             
@@ -219,7 +224,7 @@ function WorkPage() {
                   }}>
                     START
                   </button>
-                  <button className='delete-task-button' onClick={()=>{
+                  <button className='delete-task-button' title='delete task' onClick={()=>{
                                 setTasks((current) =>
                                 current.filter((item) => item.id !== task.id)
                               );
@@ -229,7 +234,7 @@ function WorkPage() {
           </ul>
           <div className='new-task-container'>
             <input  type="text" id='task-input-box' placeholder="Add new tasks" value={input} onChange={handleInputChange}></input>
-            <button className='add-button' onClick={addTask}>+</button>
+            <button className='add-button'title='add task' onClick={addTask}>+</button>
           </div>
           <hr></hr>
 
