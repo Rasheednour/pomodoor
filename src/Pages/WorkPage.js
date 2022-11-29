@@ -259,7 +259,7 @@ function WorkPage() {
 
         <div className='session-finish-container'>
           <button className='home-create-button'>
-          <Link to="/"> finish session </Link></button>
+          <Link to="/" className='finish-link'> finish session </Link></button>
         </div>
 
 

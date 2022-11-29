@@ -518,6 +518,11 @@ ul li:hover{
   /* border: 2px solid YELLOW; */
 }
 
+.finish-link {
+  text-decoration: none;
+  color: black;
+}
+
 hr {
   color: #ffdecc;
   height: 2px;
