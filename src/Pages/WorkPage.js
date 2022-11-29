@@ -243,6 +243,11 @@ function WorkPage() {
           {/* finished tasks sesction */}
           <div className='pending-tasks-ribbon'>
           <h3 className='pending-tasks-title'>Finished Tasks</h3>
+          <button className='clear-tasks-button' title='clear tasks' onClick={()=>{
+                                if (window.confirm('Are you sure you want to clear the list of finished tasks?')){
+                                  setFinishedTasks([]);
+                                }
+                              }}> - </button>
           </div>
           
           <ul>
