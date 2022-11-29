@@ -7,56 +7,54 @@ import '../App.css';
 
 
 function SetupPage() {
+    // state variable to keep track of current Pomodoro timer values
     const [pomodoroTime, setPomodoroTime] = useState(['25', '00']);  
+    // state variable to keep track of current break timer values
     const [breakTime, setBreakTime] = useState(['05', '00']);
+    // state variable to keep track of current recess timer values
     const [recessTime, setRecessTime] = useState(['15', '00']);
     const location = useLocation();
+    // navigation variable to handle moving to the work page
     const navigate = useNavigate();
     const navigateToSession = () => {
         navigate('/work', {state: {name: location.state.name, pomodoroTime: pomodoroTime, breakTime: breakTime, recessTime: recessTime}});
     };
     return (
         <div className='setup-container'>
-                <h1>Setup Timers</h1>
-                <form>
-                <fieldset className='home-fieldset'>
-
-                    <label className='home-fieldset-label'>POMODORO TIME                       <div className='setup-input'>
-                            <input className='home-fieldset-input' placeholder="00" type="text" value={pomodoroTime[0]}
-                            onChange={e => setPomodoroTime([e.target.value, pomodoroTime[1]])} />
-                            <p>:</p>
-                            <input className='home-fieldset-input' placeholder="00" type="text" value={pomodoroTime[1]}
-                            onChange={e => setPomodoroTime([pomodoroTime[0], e.target.value])} />
-                        </div>
-                    </label>
-
-                    <label className='home-fieldset-label'>BREAK TIME 
-                        <div className='setup-input'>
-                            <input className='home-fieldset-input' placeholder="00" type="text" value={breakTime[0]}
-                            onChange={e => setBreakTime([e.target.value, breakTime[1]])} />
-                            <p>:</p>
-                            <input className='home-fieldset-input' placeholder="00" type="text" value={breakTime[1]}
-                            onChange={e => setBreakTime([breakTime[0], e.target.value])} />
-                        </div>
-                    </label>
-
-                    <label className='home-fieldset-label'>RECESS TIME 
-                        <div className='setup-input'>
-                            <input className='home-fieldset-input' placeholder="00" type="text" value={recessTime[0]}
-                            onChange={e => setRecessTime([e.target.value, recessTime[1]])} />
-                            <p>:</p>
-                            <input className='home-fieldset-input' placeholder="00" type="text" value={recessTime[1]}
-                            onChange={e => setRecessTime([recessTime[0], e.target.value])} />
-                        </div>
-                    </label>
-
-                </fieldset>
-
-                <button className='home-create-button' onClick={e => {
-                navigateToSession();
-                }}>START SESSION</button>
-                </form>
-
+            <h1>Setup Timers</h1>
+            <form>
+            <fieldset className='home-fieldset'>
+                <label className='home-fieldset-label'>POMODORO TIME                       <div className='setup-input'>
+                        <input className='home-fieldset-input' placeholder="00" type="text" value={pomodoroTime[0]}
+                        onChange={e => setPomodoroTime([e.target.value, pomodoroTime[1]])} />
+                        <p>:</p>
+                        <input className='home-fieldset-input' placeholder="00" type="text" value={pomodoroTime[1]}
+                        onChange={e => setPomodoroTime([pomodoroTime[0], e.target.value])} />
+                    </div>
+                </label>
+                <label className='home-fieldset-label'>BREAK TIME 
+                    <div className='setup-input'>
+                        <input className='home-fieldset-input' placeholder="00" type="text" value={breakTime[0]}
+                        onChange={e => setBreakTime([e.target.value, breakTime[1]])} />
+                        <p>:</p>
+                        <input className='home-fieldset-input' placeholder="00" type="text" value={breakTime[1]}
+                        onChange={e => setBreakTime([breakTime[0], e.target.value])} />
+                    </div>
+                </label>
+                <label className='home-fieldset-label'>RECESS TIME 
+                    <div className='setup-input'>
+                        <input className='home-fieldset-input' placeholder="00" type="text" value={recessTime[0]}
+                        onChange={e => setRecessTime([e.target.value, recessTime[1]])} />
+                        <p>:</p>
+                        <input className='home-fieldset-input' placeholder="00" type="text" value={recessTime[1]}
+                        onChange={e => setRecessTime([recessTime[0], e.target.value])} />
+                    </div>
+                </label>
+            </fieldset>
+            <button className='home-create-button' onClick={e => {
+            navigateToSession();
+            }}>START SESSION</button>
+            </form>
         </div>
     );
 

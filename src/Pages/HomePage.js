@@ -5,7 +5,9 @@ import { useState } from 'react';
 
 function HomePage() {
 
+  // keep track of session name
   const [name, setName] = useState('session');  
+  // logic to handle navigating to the setup page
   const navigate = useNavigate();
   const navigateToSession = () => {
     navigate('/setup', {state: {name: name}});
@@ -22,14 +24,12 @@ function HomePage() {
           </div>
           <div className='home-form'>
               <form >
-
                   <fieldset className='home-fieldset'>
                       <label className='home-fieldset-label'>CREATE A NEW WORK SESSION
                       <input className='home-fieldset-input' placeholder="SESSION NAME" type="text"
                       onChange={e => setName(e.target.value)} />
                       </label>
                   </fieldset>
-
                   <button className='home-create-button' onClick={e => {
                   navigateToSession();
                   }}>CREATE</button>

@@ -1,31 +1,46 @@
 import '../../../src/App.css';
 import React, { useState, useEffect, Fragment } from 'react';
 const START_DERATION = 10;
+// Set up a counter to keep track of the number of finished Pomodoros
 let pomodoroCount = 0;
 
+// function params:
+//  WORK_TIME, BREAK_TIME, RECESS_TIME: A list of two values, the first is the time in minutes, the second is the time in seconds.
+
 export default function Timer({WORK_TIME, BREAK_TIME, RECESS_TIME}) {
+  // keep track of current time in minutes
   const [currentMinutes, setMinutes] = useState(WORK_TIME[0]);
+  // keep track of current time in seconds
   const [currentSeconds, setSeconds] = useState(WORK_TIME[1]);
+  // keep track of state of timer if stopped
   const [isStop, setIsStop] = useState(false);
   const [duration, setDuration] = useState(START_DERATION);
+  // keep track of state o timer if running
   const [isRunning, setIsRunning] = useState(false);
+  // set session type (work, break, or recess)
   const [sessionType, setSessionType] = useState('-work time-');
+  // keep track of session type if Pomodoro
   const [isPomodoro, setIsPomodoro] = useState(true)
+  // set timer background color
   const [background, setBackground] = useState('timer-background-red');
   
+  // set variable to store timer text color
   let textColor = 'time';
   
+  // logic to handle starting a timer
   const startHandler = () => {
     setDuration(parseInt(currentSeconds, 10) + 60 * parseInt(currentMinutes, 10));
-    // setMinutes(60 * 5);
-    // setSeconds(0);
     setIsRunning(true);
   };
+
+  // logic to handle stopping a timer
   const stopHandler = () => {
     // stop timer
     setIsStop(true);
     setIsRunning(false);
   };
+
+  // logic to handle resetting a timer
   const resetHandler = () => {
     setMinutes(currentMinutes);
     setSeconds(currentSeconds);
@@ -33,7 +48,10 @@ export default function Timer({WORK_TIME, BREAK_TIME, RECESS_TIME}) {
     setIsStop(false);
     setDuration(START_DERATION);
   };
+
+  // logic to handle switching between different timers (work -> break -> recess)
   const switchTimer = () => {
+    // check current session to decide which timer to switch to
     if (!isPomodoro) {
       setBackground('timer-background-red');
       setIsPomodoro(true);
@@ -61,6 +79,7 @@ export default function Timer({WORK_TIME, BREAK_TIME, RECESS_TIME}) {
     setDuration(START_DERATION);
   }
 
+  // logic to handle resuming a timer
   const resumeHandler = () => {
     let newDuration =
       parseInt(currentMinutes, 10) * 60 + parseInt(currentSeconds, 10);
@@ -70,6 +89,7 @@ export default function Timer({WORK_TIME, BREAK_TIME, RECESS_TIME}) {
     setIsStop(false);
   };
 
+  // logic to handle timer countdown animation, and timer expiry actions
   useEffect(() => {
     if (isRunning === true) {
       let timer = duration;

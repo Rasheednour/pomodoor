@@ -13,14 +13,19 @@ let tasksList = {};
 
 
 function WorkPage() {
+  // state variable to keep track of pending tasks list
   const [tasks, setTasks] = useState([]);
+  // state variable to keep track of current task
   const [currentTask, setCurrentTask] = useState(null);
+  // state variable to keep track of task_id
   const [id, setID] = useState(1200);
   const location = useLocation();
+  // state variable to keep track of current input values in the task input box
   const [input, setInput] = useState('');
+  // state variable to keep track of finished tasks list
   const [finishedTasks, setFinishedTasks] = useState([]);
 
-
+  // logic to handle change of input in the tasks input box
   const handleInputChange = event => {
     setInput(event.target.value);
   }
@@ -28,13 +33,12 @@ function WorkPage() {
 // start a timer for the current task
   function startTask(id) {
 
-    // start count-down timer when a task is started
+    // automatically start count-down timer when a task is started
     document.getElementById('start-timer').click();
-
-    // local subsitute to timing a task
 
     // get current time in seconds
     const currentTime = new Date().getTime() / 1000;
+  
     // save current time for this task in the tasksList
     tasksList[id] = currentTime;
 
@@ -60,7 +64,7 @@ function WorkPage() {
     // stop count-down timer when a task is finished
     document.getElementById('stop-timer').click();
 
-    // local subsitute for stopping a task and calculating elapsed time
+    // get current time
     const endTime = new Date().getTime() / 1000;
     const startTime = tasksList[id];
     // get elapsed time in decimals
@@ -76,12 +80,14 @@ function WorkPage() {
     // .then(response=>response.json());
   }
 
+  // function that auto increments the current task_id to a new value which can be used for the next added task
   function incrementID() {
     setID(new_id=>{
       return id + 1
     })
   }
 
+  // fuction that adds a new task to the list of pending tasks
   const addTask = () => {
     // get the value of the input box
     const value = document.getElementById('task-input-box').value;
@@ -96,6 +102,7 @@ function WorkPage() {
     });
   }
 
+  // function that adds a task to the list of finished tasks
   function addFinishedTask(id, description, duration) {
     const task = {"id": id, "description": description, "duration": duration};
     setFinishedTasks(existingTasks => {
@@ -103,22 +110,9 @@ function WorkPage() {
     });
   }
 
-  function deleteTask(task_id) {
-    console.log("deleting?")
-      // delete task from list of pending tasks
-    let newTaskList = tasks;
-    for (let i=0; i < newTaskList.length; i++) {
-      if (newTaskList[i]["id"] === task_id) {
-        newTaskList.splice(i, 1);
-        break;
-      }
-    }
-    setTasks(newTaskList);
-  }
-
-
-
+  // retrieve the user's timer settings from the location state variable
   const time = {pomoTime: location.state.pomodoroTime, breakTime: location.state.breakTime, recessTime: location.state.recessTime};
+
   return (
     <div className='work-page-container'>
 
@@ -133,8 +127,6 @@ function WorkPage() {
 
         <div className='session-timer-container'>
             <Timer WORK_TIME={time.pomoTime} BREAK_TIME={time.breakTime} RECESS_TIME={time.recessTime}/>
-            
-        
             {currentTask === null ? 
               <div className='current-task-box'> 
               <p>start a task below</p> 
@@ -168,43 +160,26 @@ function WorkPage() {
                     const duration = stopTask(currentTask.id);
                     addFinishedTask(currentTask.id, currentTask.description, duration);
                     setCurrentTask(null);
-                    
-
-
                   }}>
                         FINISH
                   </button>
                 </li>
               </ul>
             }
-
-
-        </div>
-
-
-
-        {/* current task */}
-      
+        </div>      
         
-
-
         {/* create tasks */}
 
-       
-
-        
         <div className='pending-tasks-container'>
           <hr></hr>
           <div className='pending-tasks-ribbon'>
             <h3 className='pending-tasks-title'>Pending Tasks</h3>
             <button className='clear-tasks-button' title='clear tasks' onClick={()=>{
                                 if (window.confirm('Are you sure you want to clear the list of pending tasks?')){
-                                  setTasks([]);
-                                }
-                              }}> - </button>
+                                  setTasks([]);}}}> -
+            </button>
           </div>
           <ul>
-            
             {tasks.map(task => (
               <li key={task.id}>
                   <Task name={task.description}/>
@@ -238,9 +213,8 @@ function WorkPage() {
           </div>
           <hr></hr>
 
-
-
           {/* finished tasks sesction */}
+
           <div className='pending-tasks-ribbon'>
           <h3 className='pending-tasks-title'>Finished Tasks</h3>
           <button className='clear-tasks-button' title='clear tasks' onClick={()=>{
@@ -249,7 +223,6 @@ function WorkPage() {
                                 }
                               }}> - </button>
           </div>
-          
           <ul>
           {finishedTasks.map(task => (
               <li key={task.id} className='finished-task-item'>
@@ -260,9 +233,6 @@ function WorkPage() {
               </li>
             ))}
           </ul>
-
-
-
         </div>
         
         {/* finish session */}
@@ -271,9 +241,6 @@ function WorkPage() {
           <button className='home-create-button'>
           <Link to="/" className='finish-link'> finish session </Link></button>
         </div>
-
-
-
     </div>
   );
 }
